@@ -82,8 +82,9 @@ open(F,"<$mbox") or die "Could not open '$mbox' ($!)";
 while(<F>) { # foreach line
 	$line++;
 
-	if (/^From\s+-\s+\w{3}\s+(\w{3})\s+(\d{2})\s+\d{2}:\d{2}:\d{2}\s+(\d{4})\b/i) {  # new message syntax : From - Mon Jan 05 08:37:43 2012
-
+	if (/^From\s+\d+@\w+\s+\w{3}\s+(\w{3})\s+(\d{2})\s+\d{2}:\d{2}:\d{2}\s\+0000\s(\d{4})\b/i) { # For use in GMAIL archive
+	# new one From 1556429580291097159@xxx Fri Jan 13 17:01:56 +0000 2017
+	
 		print OUTPUT $buffer unless $dry_run || $skip_message; # write buffer into the output file
 
 		$buffer = '';		# reset buffer
